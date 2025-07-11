@@ -2,16 +2,28 @@
 
 import Image from "next/image";
 import Button from "@/components/ui/button";
+import { MotionValue, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+	return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 const Footer = () => {
+	const ref = useRef(null);
+	const { scrollYProgress } = useScroll({ target: ref });
+	const y = useParallax(scrollYProgress, 100);
 	return (
 		<footer
-			id="community-seaction"
+			ref={ref}
+			id="footer-seaction"
 			className="h-screen relative overflow-clip"
 			style={{
 				background:
-					"url('/images/footer_moon.png') black 50% -80% fixed",
-				backgroundSize: "contain",
+					"url('/images/footer_moon.png') black 50% -20% fixed",
+				backgroundSize: "cover",
+				backgroundRepeat: "no-repeat",
+				scrollSnapAlign: "start",
 			}}
 		>
 			<div className="flex flex-row justify-center items-center translate-y-[265px]">

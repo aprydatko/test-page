@@ -1,9 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  /* --background: #242424; */
-  /* --background: var(--color-black); */
-  --color-background: #0a0c11;
+  --color-background: linear-gradient(180deg, var(--color-black) 36.4%, #191E2A 100%); 
   --foreground: #171717;
 }
 
@@ -17,13 +15,19 @@
   --btn-background: #010204;
   --btn-gradient: linear-gradient(106.2deg, #963488 -12.33%, #FC6F32 50.28%, #FF4A59 114.17%);
   --header-gradient: linear-gradient(180deg, var(--color-black) 36.4%, #191E2A 100%);
+
   --heading-gradient: linear-gradient(108.88deg, #B53EA4 -2.82%, var(--color-orange) 34.48%, var(--color-red) 93.08%);
-  --heading-gradient-light: linear-gradient(0deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)),
+  --heading-gradient-light: linear-gradient(0deg, #ffffff33, #ffffff33),
       linear-gradient(106.2deg, #FFD6F9 -12.33%, #FFCBB4 50.28%, #FFBEC3 114.17%);
-  --header-effect-one: linear-gradient(166.79deg, rgba(50, 191, 252, 0.2) -15.02%, rgba(0, 85, 119, 0.2) 83.46%);
-  --header-effect-two: linear-gradient(173.65deg, rgba(252, 111, 50, 0.2) -0.71%, rgba(255, 74, 89, 0.2) 86.87%);
+
+  /* Effects */
+  --header-effect-blue: linear-gradient(166.79deg, rgba(50, 191, 252, 0.2) -15.02%, rgba(0, 85, 119, 0.2) 83.46%);
+  --header-effect-orange: linear-gradient(173.65deg, rgba(252, 111, 50, 0.2) -0.71%, rgba(255, 74, 89, 0.2) 86.87%);
+
+  /* Gradients */
   --achivements-gradient: linear-gradient(105.65deg, rgba(150, 52, 136, 0.2) 0.15%, rgba(252, 111, 50, 0.2) 130.58%, rgba(255, 74, 89, 0.2) 263.64%);
-  
+
+  /* Colors */
   --color-black: #000;
   --color-white: #fff;
 
@@ -40,7 +44,7 @@
 
   --spacing: 0.25rem;
 
-  --breakpoint-2xl: 1920px;
+  --breakpoint-2xl: 2000px;
 
   /* --breakpoint-sm: 40rem;
   --breakpoint-md: 48rem;
@@ -142,6 +146,8 @@
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
+
+    transition: all .5s ease-in-out;
   }
 
   h2 {
@@ -168,6 +174,10 @@
     color: var(--color-blue-600);
     text-decoration-line: underline;
   }
+}
+
+html {
+  scroll-snap-type: y mandatory;
 }
 
 body {
@@ -206,7 +216,7 @@ body {
   z-index: 0;
 } */
 
-#header-seaction::after {
+/* #header-seaction::after {
   content: "";
   position: absolute;
   top: 0;
@@ -214,8 +224,8 @@ body {
   right: 0;
   bottom: 0;
   background: var(--header-gradient);
-  z-index: -1;
-}
+  z-index: 0;
+} */
 
 .btn-default {
   background: linear-gradient(var(--btn-background)) padding-box,

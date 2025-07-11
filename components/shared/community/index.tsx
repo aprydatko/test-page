@@ -1,18 +1,23 @@
 "use client";
 
+import { MotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+	return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 const Community = () => {
+	const ref = useRef(null);
+	const { scrollYProgress } = useScroll({ target: ref });
+	const y = useParallax(scrollYProgress, 100);
 	return (
 		<section
+			ref={ref}
 			id="community-seaction"
 			className="h-screen relative overflow-clip"
-			style={{
-				background:
-					"url('/images/footer_moon.png') black 50% -135% fixed",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "contain",
-			}}
+			style={{ scrollSnapAlign: "start" }}
 		>
 			<div className="flex flex-row justify-start items-center translate-y-[235px]">
 				<div className="max-w-[941px] ml-[160px] mr-[143px] flex">

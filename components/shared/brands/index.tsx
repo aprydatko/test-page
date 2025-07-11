@@ -2,32 +2,25 @@
 
 import BrandIcon from "@/components/ui/brandIcon";
 import { brands } from "@/lib/utils";
+import { MotionValue, useScroll, useTransform } from "motion/react";
+import { useRef, useState } from "react";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+	return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 const Brands = () => {
+	const ref = useRef(null);
+	const [nextState, setNextState] = useState(false);
+	const { scrollYProgress } = useScroll({ target: ref });
+	const y = useParallax(scrollYProgress, 100);
 	return (
-		<header
+		<section
+			ref={ref}
 			id="brands-seaction"
 			className="h-screen relative overflow-clip"
-			style={{
-				background: "url('/images/earth.png') black 120% -50px fixed",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "1016px 1016px",
-			}}
+			style={{ scrollSnapAlign: "start" }}
 		>
-			<div
-				className="absolute top-[-450px] left-[350px] w-[504px] h-[795px] rotate-118"
-				style={{
-					background: "var(--header-effect-one)",
-					filter: "blur(200px)",
-				}}
-			></div>
-			<div
-				className="absolute top-[400px] left-[514px] w-[504px] h-[795px] rotate-130"
-				style={{
-					background: "var(--header-effect-two)",
-					filter: "blur(200px)",
-				}}
-			></div>
 			<div className="max-w-[1920px] mx-[80px]">
 				<div className="translate-y-[400px] relative h-screen flex flex-col items-center">
 					<h2 className="text-center">
@@ -46,7 +39,7 @@ const Brands = () => {
 					</div>
 				</div>
 			</div>
-		</header>
+		</section>
 	);
 };
 

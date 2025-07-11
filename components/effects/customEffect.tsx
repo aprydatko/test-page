@@ -1,0 +1,49 @@
+import { motion } from "motion/react";
+
+export interface CustomEffectProps {
+	top: number;
+	left: number;
+	width: number;
+	height: number;
+	transform: number;
+	name?: string;
+	opacity?: number;
+	className?: string;
+}
+
+const CustomEffect = ({
+	top,
+	left,
+	width,
+	height,
+	transform,
+	name,
+	opacity,
+	className = "",
+}: CustomEffectProps) => {
+	return (
+		<motion.div
+			initial={{
+				left: `${left}px`,
+				top: `${top}px`,
+				transform: `rotate(${transform}deg)`,
+			}}
+			animate={{
+				left: `${left}px`,
+				top: `${top}px`,
+				transform: `rotate(${transform}deg)`,
+			}}
+			transition={{ duration: 0.8 }}
+			className={`absolute z-10 ${className}`}
+			style={{
+				width: `${width}px`,
+				height: `${height}px`,
+				background: `var(--header-effect-${name})`,
+				filter: "blur(100px)",
+				opacity: opacity,
+			}}
+		></motion.div>
+	);
+};
+
+export default CustomEffect;

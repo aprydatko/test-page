@@ -2,40 +2,41 @@
 
 import Button from "@/components/ui/button";
 import Achievements from "@/components/shared/achivments";
+import EarthEffect from "@/components/effects/earth";
+import CustomEffect from "@/components/effects/customEffect";
+
 import { achievements } from "@/lib/utils";
 
 const Header2 = () => {
 	return (
 		<header
 			id="header-seaction"
-			className="h-screen relative overflow-clip"
-			style={{
-				background: "url('/images/earth.png') black 100% 50px fixed",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "1016px 1016px",
-			}}
+			className="h-[1080px] relative bg-black overflow-clip"
 		>
-			<div
-				className="absolute top-[-295px] left-[350px] w-[504px] h-[795px] rotate-60"
-				style={{
-					background: "var(--header-effect-one)",
-					filter: "blur(200px)",
-				}}
-			></div>
-			<div
-				className="absolute top-[634px] left-[-214px] w-[504px] h-[795px] rotate-72"
-				style={{
-					background: "var(--header-effect-two)",
-					filter: "blur(200px)",
-				}}
-			></div>
-			<div className="m-auto mx-[80px]">
+			<EarthEffect top={46} right={-92} />
+			<CustomEffect
+				name="blue"
+				top={-299.67}
+				left={393.14}
+				width={504.81}
+				height={795.74}
+				transform={-82.13}
+			/>
+			<CustomEffect
+				name="orange"
+				top={719.48}
+				left={82.22}
+				width={504.81}
+				height={795.74}
+				transform={-64.68}
+			/>
+			<div className="relative m-auto mx-[80px] z-20">
 				<div className="mt-[32px] gap-[24px] flex flex-row items-center justify-center">
 					<Button state="link">How It Works</Button>
 					<Button>Buy Salt AI</Button>
 				</div>
 			</div>
-			<div className="max-w-[1591px] mx-[80px]">
+			<div className="relative max-w-[1591px] mx-[80px] z-20">
 				<div className="relative translate-y-[102px]">
 					<h1 className="light">
 						A new economic primitive for funding decentralized AI
@@ -52,7 +53,10 @@ const Header2 = () => {
 					</div>
 				</div>
 			</div>
-			<Achievements className="translate-y-[258px]" data={achievements} />
+			<Achievements
+				className="translate-y-[258px] mx-[80px]"
+				data={achievements}
+			/>
 		</header>
 	);
 };

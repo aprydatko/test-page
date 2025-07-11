@@ -1,43 +1,38 @@
 "use client";
 
 import Button from "@/components/ui/button";
+import { MotionValue, useScroll, useTransform } from "motion/react";
+import { useRef, useEffect } from "react";
+import { motion } from "motion/react";
 
-const Header = () => {
+function useParallax(value: MotionValue<number>, distance: number) {
+	return useTransform(value, [0, 1], [-distance, distance]);
+}
+
+const CuttingEdge = () => {
+	const ref = useRef(null);
+	const { scrollYProgress } = useScroll({ target: ref });
+	const y = useParallax(scrollYProgress, 50);
+
 	return (
-		<header
-			id="header-seaction"
+		<section
+			id="cutting-edge-seaction"
 			className="h-screen relative overflow-clip"
-			style={{
-				background: "url('/images/earth.png') black 110% -200px fixed",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "1016px 1016px",
-			}}
+			style={{ scrollSnapAlign: "start" }}
+			ref={ref}
 		>
-			<div
-				className="absolute top-[-295px] left-[350px] w-[504px] h-[795px] rotate-60"
-				style={{
-					background: "var(--header-effect-one)",
-					filter: "blur(200px)",
-				}}
-			></div>
-			<div
-				className="absolute top-[634px] left-[-214px] w-[504px] h-[795px] rotate-72"
-				style={{
-					background: "var(--header-effect-two)",
-					filter: "blur(200px)",
-				}}
-			></div>
-			<div className="max-w-[1149px] mx-[80px]">
+			<div className="max-w-[1149px] mx-[80px] relative z-20">
 				<div className="relative translate-y-[285px]">
+					{/* translate-y-[285px] */}
 					<h2 className="max-w-[900px] leading-[75px]">
 						Crowdsourcing our collective intelligence to build the
 						best AI
 					</h2>
-					<p className="mt-[32px] mb-[20px] leading-[32px]">
+					<p className="mt-[32px] mb-[16px] leading-[32px]">
 						Open source AI has been lagging behind the likes of
 						Google and OpenAI by billions of dollars.
 					</p>
-					<p className="mt-[20px] leading-[32px]">
+					<p className="mt-[16px] leading-[32px]">
 						Salt aims to solve that by rewarding open source
 						developers who contribute to the democratization of AI.
 						We run competitions between AI models to find and reward
@@ -47,8 +42,8 @@ const Header = () => {
 					<Button size="big">Use The Cutting Edge AI</Button>
 				</div>
 			</div>
-		</header>
+		</section>
 	);
 };
 
-export default Header;
+export default CuttingEdge;

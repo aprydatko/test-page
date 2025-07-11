@@ -12,15 +12,20 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="container m-auto flex flex-col">
-			<Header />
-			{/* <Header2 />
-			<CuttingEdge />
-			<Brands />
+		// <div className="container h-[200vh] m-auto flex flex-col">
+		<div>
+			{/* <Header /> */}
+			{/* <Header2 /> */}
+			{/* <CuttingEdge /> */}
+			{/* <Brands />
 			<Leaderboard />
 			<Community /> */}
-			{/* <main className="wrapper">{children}</main> */}
+			{children}
 			{/* <Footer /> */}
 		</div>
+
+		// <div>
+		// 	<main>{children}</main>
+		// </div>
 	);
 }

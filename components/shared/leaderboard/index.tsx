@@ -5,25 +5,24 @@ import Table from "@/components/ui/table";
 import BackToTop from "@/components/ui/backToTop";
 
 import { tableMocks } from "@/lib/utils";
+import { MotionValue, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+
+function useParallax(value: MotionValue<number>, distance: number) {
+	return useTransform(value, [0, 1], [-distance, distance]);
+}
 
 const Leaderboard = () => {
+	const ref = useRef(null);
+	const { scrollYProgress } = useScroll({ target: ref });
+	const y = useParallax(scrollYProgress, 100);
 	return (
 		<section
-			id="header-seaction"
+			ref={ref}
+			id="leaderboard-seaction"
 			className="h-screen relative overflow-clip"
-			style={{
-				background: "url('/images/earth.png') black 110% -800px fixed",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "1016px 1016px",
-			}}
+			style={{ scrollSnapAlign: "start" }}
 		>
-			<div
-				className="absolute top-[-395px] left-[450px] w-[504px] h-[795px] rotate-135"
-				style={{
-					background: "var(--header-effect-one)",
-					filter: "blur(200px)",
-				}}
-			></div>
 			<div className="max-w-[1920px] mx-[80px]">
 				<div className="flex flex-row justify-between mt-[80px]">
 					<h2>LLM Leaderboard</h2>

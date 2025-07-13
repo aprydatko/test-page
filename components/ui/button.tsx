@@ -17,8 +17,8 @@ const Button = ({
 }: ButtonProps) => {
 	const b_size =
 		size === "big"
-			? "h-[75px] pt-[22px] pb-[24px] px-[48px] text-2xl"
-			: "h-[52px] pt-[14px] pb-[16px] px-[32px] text-lg";
+			? "h-[50px] sm:h-[75px] pt-[22px] pb-[24px] px-[24px] sm:px-[48px] text-sm sm:text-2xl"
+			: "h-[40px] sm:h-[52px] pt-[14px] pb-[16px] px-[16px] sm:px-[32px] text-xs sm:text-lg";
 	const b_state = state === "link" ? "btn-link" : "btn-default";
 	return (
 		<button onClick={onClick}>

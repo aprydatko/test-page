@@ -29,11 +29,12 @@ const Homepage = () => {
 		useState<CustomEffectProps>(effects["orange"].header_first);
 
 	return (
-		<div className="h-[600vh] relative container m-auto overflow-clip">
+		// <div className="h-[600vh] relative container m-auto overflow-clip">
+		<div className="@9xl/wrapper:mx-[5rem] @7xl/wrapper:mx-[4rem] @5xl/wrapper:mx-[2rem] @xs/wrapper:mx-[1rem]">
 			{/* Effects */}
-			<EarthEffect {...earthEffectConfig} />
+			{/* <EarthEffect {...earthEffectConfig} />
 			<CustomEffect name="blue" {...blueEffectConfig} />
-			<CustomEffect name="orange" {...orangeEffectConfig} />
+			<CustomEffect name="orange" {...orangeEffectConfig} /> */}
 			{/* Sections */}
 			<Header />
 			<CuttingEdge />

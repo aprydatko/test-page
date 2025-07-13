@@ -29,8 +29,8 @@ const Header = () => {
 			style={{ scrollSnapAlign: "start" }}
 			ref={ref}
 		>
-			<div className="relative m-auto mx-[80px] z-20">
-				<div className="pt-[32px] gap-[24px] flex flex-row items-center justify-center">
+			<div className="relative m-auto z-20">
+				<div className="pt-4 sm:pt-8 gap-[1rem] sm:gap-[1.5rem] flex flex-row items-center justify-center">
 					<Button state="link">LLM Leaderboard</Button>
 					<Button>Buy Salt AI</Button>
 				</div>
@@ -39,20 +39,24 @@ const Header = () => {
 				style={{
 					maxWidth: nextState ? "1591px" : "1632px",
 				}}
-				className="relative mx-[80px] z-20"
+				className="relative z-20"
 			>
 				<motion.div
 					animate={{ y: nextState ? -140 : 0 }}
 					transition={{ duration: 0.5 }}
-					className="relative translate-y-[242px]"
+					className="relative translate-y-[142px] md:translate-y-[242px]"
 				>
-					<h1 className={`${nextState ? "light" : ""}`}>
+					<h1
+						className={`${
+							nextState ? "light" : ""
+						} 2xl:text-9xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl`}
+					>
 						A new economic primitive for funding decentralized AI
 					</h1>
 					<motion.p
 						style={{
-							marginTop: nextState ? "36px" : "32px",
-							marginBottom: nextState ? "36px" : "32px",
+							marginTop: nextState ? "2.25rem" : "",
+							marginBottom: nextState ? "2.25rem" : "",
 						}}
 					>
 						We track, rank and pay for the best open source

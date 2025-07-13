@@ -39,21 +39,21 @@ const Achievements = ({ data = [], className }: AchievementskProps) => {
 			initial="hidden"
 			whileInView="visible"
 			variants={list}
-			className={`${className} relative flex flex-row justify-center items-center gap-[20px]`}
+			className={`${className} relative flex flex-col lg:flex-row justify-center items-center gap-[20px]`}
 		>
 			{data.map(({ count, title }, index) => (
 				<motion.div
 					variants={item}
 					key={index}
-					className="flex-1/3 h-[190px] rounded-[90px] p-[32px] text-white text-center"
+					className=" lg:flex-1/3 w-[100%] h-auto lg:h-[190px] rounded-[90px]  p-[1rem] lg:p-[32px] text-white text-center"
 					style={{
 						background: "var(--achivements-gradient)",
 					}}
 				>
-					<strong className="block mb-[20px] text-[64px] font-bold leading-[77px]">
+					<strong className="block mb-[1rem] lg:mb-[20px] text-[2rem] lg:text-[4rem] md:text-[3rem] font-bold leading-9 lg:leading-[77px] md:leading-14">
 						{count}
 					</strong>
-					<span className="text-2xl font-normal leading-[29px]">
+					<span className="text-sm lg:text-2xl font-normal leading-none lg:leading-[29px]">
 						{title}
 					</span>
 				</motion.div>

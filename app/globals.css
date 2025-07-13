@@ -84,7 +84,7 @@
   --text-4xl--line-height: calc(2.5 / 2.25);
   --text-5xl: 3rem;
   --text-5xl--line-height: 1;
-  --text-6xl: 3.75rem;
+  --text-6xl: 4rem;
   --text-6xl--line-height: 1;
   --text-7xl: 4.5rem;
   --text-7xl--line-height: 1;
@@ -145,9 +145,9 @@
 
   h2 {
     font-family: var(--font-clash-grotesk);
-    font-size: 64px;
+    /* font-size: var(--text-xl); */
     font-weight: 500;
-    line-height: 79px;
+    /* line-height: 79px; */
     color: var(--color-white);
   }
 
@@ -254,33 +254,46 @@ body {
   stroke: url("#color-gradient");
 }
 
-/* h1 */
- /* 2xl:text-9xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-xl */
 
-@media screen and (width >= 80rem) {
+@media only screen and (min-width: 64rem) {
+  h2 {
+      font-size: var(--text-6xl);
+  }
   p {
     font-size: var(--text-2xl);
   }
 }
 
-@media screen and (width >=64rem) {
+@media only screen and (max-width: 64rem) {
+  h2 {
+    font-size: var(--text-4xl);
+  }
   p {
     font-size: var(--text-xl);
   }
 }
 
-@media screen and (max-width >=48rem) {
-  
-}
-
-@media screen and (max-width >=30rem) {
+@media only screen and (max-width: 48rem) {
+  h2 {
+      font-size: var(--text-3xl);
+  }
   p {
     font-size: var(--text-sm);
   }
 }
 
-@media screen and (width >= 20rem) {
-  
+@media only screen and (max-width: 30rem) {
+  h2 {
+    font-size: var(--text-3xl);
+  }
+  p {
+    font-size: var(--text-sm);
+  }
 }
 
+@media only screen and (max-width: 20rem) {
+  h2 {
+    font-size: var(--text-2xl);
+  }
+}
 

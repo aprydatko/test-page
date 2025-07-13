@@ -11,14 +11,22 @@ import {
 import Button from "@/components/ui/button";
 import Achievements from "@/components/shared/achivments";
 import { achievements } from "@/lib/utils";
+import { useMediaQuery } from "react-responsive";
 
 function useParallax(value: MotionValue<number>, distance: number) {
 	return useTransform(value, [0, 1], [-distance, distance]);
 }
 
-const Header = () => {
+const Header = ({
+	nextState,
+	setNextState,
+}: {
+	nextState: boolean;
+	setNextState: (nextState: boolean) => void;
+}) => {
 	const ref = useRef(null);
-	const [nextState, setNextState] = useState(false);
+	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
+
 	const { scrollYProgress } = useScroll({ target: ref });
 	const y = useParallax(scrollYProgress, 100);
 
@@ -42,13 +50,13 @@ const Header = () => {
 				className="relative z-20"
 			>
 				<motion.div
-					animate={{ y: nextState ? -140 : 0 }}
+					animate={{ y: nextState ? (isMobile ? -120 : -140) : 0 }}
 					transition={{ duration: 0.5 }}
 					className="relative translate-y-[142px] md:translate-y-[242px]"
 				>
 					<h1
 						className={`${
-							nextState ? "light" : ""
+							nextState ? "light 2xl:text-[125px]" : ""
 						} 2xl:text-9xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl`}
 					>
 						A new economic primitive for funding decentralized AI
@@ -64,7 +72,11 @@ const Header = () => {
 					</motion.p>
 					<div className="flex flex-row items-center justify-start">
 						<Button size="big">Buy Salt AI</Button>
-						<Button size="big" state="link">
+						<Button
+							onClick={() => setNextState(true)}
+							size="big"
+							state="link"
+						>
 							Try Now
 						</Button>
 					</div>
@@ -73,7 +85,7 @@ const Header = () => {
 			<AnimatePresence>
 				{nextState && (
 					<Achievements
-						className="translate-y-[258px] mx-[80px]"
+						className="translate-y-[172px] md:translate-y-[258px]"
 						data={achievements}
 					/>
 				)}

@@ -19,6 +19,7 @@ import Footer from "@/components/shared/footer";
 
 const Homepage = () => {
 	const [activeSection, setActiveSection] = useState("header_start");
+	const [nextState, setNextState] = useState(false);
 	const [earthEffectConfig, setEarthEffectConfig] = useState<IEarthEffect>(
 		effects["earth"].header_first
 	);
@@ -36,7 +37,7 @@ const Homepage = () => {
 			<CustomEffect name="blue" {...blueEffectConfig} />
 			<CustomEffect name="orange" {...orangeEffectConfig} /> */}
 			{/* Sections */}
-			<Header />
+			<Header nextState={nextState} setNextState={setNextState} />
 			<CuttingEdge />
 			<Brands />
 			<Leaderboard />

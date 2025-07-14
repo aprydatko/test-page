@@ -39,7 +39,9 @@ const Header = ({
 		>
 			<div className="relative m-auto z-20">
 				<div className="pt-4 sm:pt-8 gap-[1rem] sm:gap-[1.5rem] flex flex-row items-center justify-center">
-					<Button state="link">LLM Leaderboard</Button>
+					<Button onClick={() => setNextState(true)} state="link">
+						Try Now
+					</Button>
 					<Button>Buy Salt AI</Button>
 				</div>
 			</div>
@@ -57,14 +59,14 @@ const Header = ({
 					<h1
 						className={`${
 							nextState ? "light 2xl:text-[125px]" : ""
-						} 2xl:text-9xl xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl`}
+						} 2xl:text-9xl 2xl:leading-[123px] xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-3xl`}
 					>
 						A new economic primitive for funding decentralized AI
 					</h1>
 					<motion.p
 						style={{
-							marginTop: nextState ? "2.25rem" : "",
-							marginBottom: nextState ? "2.25rem" : "",
+							marginTop: nextState ? "2.25rem" : "2.25rem",
+							marginBottom: nextState ? "2.25rem" : "2.25rem",
 						}}
 					>
 						We track, rank and pay for the best open source
@@ -85,7 +87,7 @@ const Header = ({
 			<AnimatePresence>
 				{nextState && (
 					<Achievements
-						className="translate-y-[172px] md:translate-y-[258px]"
+						className="translate-y-[172px] md:translate-y-[360px]"
 						data={achievements}
 					/>
 				)}

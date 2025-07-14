@@ -127,39 +127,39 @@ const Table = ({ className, data = [] }: TableProps) => {
  text-white ${id % 2 ? "bg-purple-light" : "transparent"}`}
 				key={id}
 			>
-				<td className="flex items-center justify-end pt-[1rem] lg:pt-[22px] px-[6px]">
+				<td className="flex items-center justify-end pt-[1rem] lg:pt-[22px] px-[6px] lg:leading-[19px]">
 					{state === "up" && <Ranking state="up" />}
 					{state === "down" && <Ranking state="down" />}
 					{!state && <Ranking />}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-center">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-center lg:leading-[19px]">
 					{id}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-left">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-left lg:leading-[19px]">
 					{short_name(model_name)}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{average}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{arc}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{hellaswag}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{mmlu}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{truthfulqa}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{winogrande}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right lg:leading-[19px]">
 					{gsm8k}
 				</td>
-				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right last:pr-[24px]">
+				<td className="pt-[1rem] lg:pt-[26.5px] py-[1rem] lg:py-[26.5px] px-[6px] text-xs lg:text-base text-right last:pr-[24px] lg:leading-[19px]">
 					{usage}
 				</td>
 			</tr>

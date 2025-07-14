@@ -3,11 +3,12 @@ import { motion } from "motion/react";
 export interface CustomEffectProps {
 	top: number;
 	left: number;
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 	transform: number;
 	name?: string;
 	opacity?: number;
+	hide?: boolean;
 	className?: string;
 }
 
@@ -19,6 +20,7 @@ const CustomEffect = ({
 	transform,
 	name,
 	opacity,
+	hide,
 	className = "",
 }: CustomEffectProps) => {
 	return (
@@ -39,8 +41,8 @@ const CustomEffect = ({
 				width: `${width}px`,
 				height: `${height}px`,
 				background: `var(--header-effect-${name})`,
-				filter: "blur(100px)",
-				opacity: opacity,
+				// filter: "blur(100px)",
+				opacity: hide ? "0" : opacity,
 			}}
 		></motion.div>
 	);

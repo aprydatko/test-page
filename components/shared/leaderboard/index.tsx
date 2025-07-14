@@ -24,7 +24,7 @@ const Leaderboard = () => {
 			style={{ scrollSnapAlign: "start" }}
 		>
 			<div className="">
-				<div className="flex flex-col md:flex-row justify-between items-center md:items-start pt-[1rem] md:pt-[80px]">
+				<div className="flex flex-col md:flex-row justify-between items-center md:items-start pt-[1rem] xl:pt-[80px]">
 					<h2>LLM Leaderboard</h2>
 					<Button className="mt-4 lg:mt-0" size="big">
 						Submit your model
@@ -37,7 +37,7 @@ const Leaderboard = () => {
 					the LLM.
 				</p>
 				<Table
-					className="block lg:inline-table h-auto xl:h-[50vh] 2xl:x-[auto] overflow-x-scroll"
+					className="block 2xl:inline-table h-auto xl:h-[50vh] 2xl:x-[auto] overflow-x-scroll"
 					data={tableMocks}
 				/>
 				<div className="mt=[1rem] lg:mt-[34px] flex flex-row items-center justify-end">

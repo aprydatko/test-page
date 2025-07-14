@@ -13,7 +13,7 @@ export default function RootLayout({
 }>) {
 	return (
 		// <div className="container h-[200vh] m-auto flex flex-col">
-		<div className="h-[600vh] relative container @container/wrapper m-auto overflow-clip">
+		<div className="h-[100vh] relative container @container/wrapper m-auto overflow-clip">
 			{/* <Header /> */}
 			{/* <Header2 /> */}
 			{/* <CuttingEdge /> */}

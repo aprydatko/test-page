@@ -145,6 +145,7 @@
 
   h2 {
     font-family: var(--font-clash-grotesk);
+    line-height: 1.1;
     /* font-size: var(--text-xl); */
     font-weight: 500;
     /* line-height: 79px; */

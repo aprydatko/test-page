@@ -48,7 +48,7 @@ const Homepage = () => {
 		effects["moon"].community
 	);
 
-	const wheel = (e: { deltaY: any }) => {
+	const wheel = (e: { deltaY: number }) => {
 		const delta = e.deltaY;
 
 		// Check max and min delta index

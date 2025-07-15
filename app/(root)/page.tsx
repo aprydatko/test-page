@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import CuttingEdge from "@/components/shared/section-cutting-edge";
 import Header from "@/components/shared/header";
 import EarthEffect, { IEarthEffect } from "@/components/effects/earth";
@@ -30,6 +30,7 @@ const MAX_COUNT = 5;
 
 const Homepage = () => {
 	const ref = useRef<HTMLDivElement | null>(null);
+	const [startY, setStartY] = useState<number | null>(null);
 	const [activeScroll, setActiveScroll] = useState<string | "down" | "up">(
 		"down"
 	);
@@ -48,6 +49,18 @@ const Homepage = () => {
 		effects["moon"].community
 	);
 
+	const down = () => {
+		setActiveSection(slides[slideIndex - 1].name);
+		setSlideIndex(slideIndex - 1);
+	};
+	const up = () => {
+		setActiveSection(slides[slideIndex + 1].name);
+		setSlideIndex(slideIndex + 1);
+	};
+	const slide_down = debounce(down, 100);
+	const slide_up = debounce(up, 100);
+
+	/* This Func managed user scroll on the desctop */
 	const wheel = (e: { deltaY: number }) => {
 		const delta = e.deltaY;
 
@@ -59,17 +72,6 @@ const Homepage = () => {
 			return;
 		}
 
-		const down = () => {
-			setActiveSection(slides[slideIndex - 1].name);
-			setSlideIndex(slideIndex - 1);
-		};
-		const up = () => {
-			setActiveSection(slides[slideIndex + 1].name);
-			setSlideIndex(slideIndex + 1);
-		};
-		const slide_down = debounce(down, 100);
-		const slide_up = debounce(up, 100);
-
 		// Scroll up or down
 		if (delta < 0) {
 			setActiveScroll("down");
@@ -79,6 +81,38 @@ const Homepage = () => {
 			setActiveScroll("up");
 			slide_up();
 		}
+	};
+
+	/* This Func managed user scroll on the mobile */
+	const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+		setStartY(e.touches[0].clientY);
+	};
+
+	const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+		const endY = e.changedTouches[0].clientY;
+		if (startY === null) return;
+
+		const diffY = startY - endY;
+
+		// Check max and min delta index
+		if (Math.abs(diffY) > 50) {
+			if (
+				(slideIndex === MAX_COUNT && diffY > 0) ||
+				(slideIndex === 0 && diffY < 0)
+			) {
+				return;
+			}
+
+			if (diffY > 0) {
+				setActiveScroll("up");
+				slide_up();
+			} else {
+				setActiveScroll("down");
+				slide_down();
+			}
+		}
+
+		setStartY(null);
 	};
 
 	const updateEffects = (screen: string) => {
@@ -184,6 +218,8 @@ const Homepage = () => {
 				<motion.div
 					ref={ref}
 					onWheel={wheel}
+					onTouchStart={handleTouchStart}
+					onTouchEnd={handleTouchEnd}
 					key={slides[slideIndex].id}
 					initial={{ y: activeScroll === "up" ? "100%" : "0%" }}
 					animate={{ y: 0 }}

@@ -1,29 +1,20 @@
 "use client";
 
 import Button from "@/components/ui/button";
-import { MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Social from "@/components/ui/social";
 import { useMediaQuery } from "react-responsive";
 import Links from "@/components/ui/links";
 
-function useParallax(value: MotionValue<number>, distance: number) {
-	return useTransform(value, [0, 1], [-distance, distance]);
-}
-
 const Footer = () => {
 	const ref = useRef(null);
 	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-	const { scrollYProgress } = useScroll({ target: ref });
-	const y = useParallax(scrollYProgress, 100);
 	return (
 		<footer
 			ref={ref}
 			id="footer-seaction"
 			className="h-screen relative overflow-clip"
 			style={{
-				// background:
-				// 	"url('/images/footer_moon.png') black 50% -20% fixed",
 				backgroundSize: "cover",
 				backgroundRepeat: "no-repeat",
 				scrollSnapAlign: "start",

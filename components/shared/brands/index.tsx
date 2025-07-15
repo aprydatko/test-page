@@ -2,19 +2,13 @@
 
 import BrandIcon from "@/components/ui/brandIcon";
 import { brands } from "@/lib/utils";
-import { MotionValue, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
-
-function useParallax(value: MotionValue<number>, distance: number) {
-	return useTransform(value, [0, 1], [-distance, distance]);
-}
 
 const Brands = () => {
 	const ref = useRef(null);
 	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-	const { scrollYProgress } = useScroll({ target: ref });
-	const y = useParallax(scrollYProgress, 100);
 	return (
 		<section
 			ref={ref}
@@ -27,7 +21,18 @@ const Brands = () => {
 					<h2 className="text-center">
 						Projects integrated into the Arrakis AI Ecosystem
 					</h2>
-					<div className="mt-[3rem] w-[100%] h-auto lg:h-[102px] flex flex-col lg:flex-row justify-between items-center gap-[2rem] lg:gap-[1rem] 2xl:[7.5rem]">
+					<motion.div
+						initial={{
+							transform: "translateX(100%)",
+						}}
+						animate={{
+							transform: "translateX(0px)",
+						}}
+						transition={{
+							duration: 0.6,
+						}}
+						className="mt-[3rem] w-[100%] h-auto lg:h-[102px] flex flex-col lg:flex-row justify-between items-center gap-[2rem] lg:gap-[1rem] 2xl:[7.5rem]"
+					>
 						{brands.map(({ width, height, name, alt }, index) => (
 							<BrandIcon
 								className={`w-${isMobile ? "auto" : width}`}
@@ -38,7 +43,7 @@ const Brands = () => {
 								alt={alt}
 							/>
 						))}
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</section>

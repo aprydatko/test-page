@@ -1,17 +1,10 @@
 "use client";
 
 import Button from "@/components/ui/button";
-import { MotionValue, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-
-function useParallax(value: MotionValue<number>, distance: number) {
-	return useTransform(value, [0, 1], [-distance, distance]);
-}
 
 const CuttingEdge = () => {
 	const ref = useRef(null);
-	const { scrollYProgress } = useScroll({ target: ref });
-	const y = useParallax(scrollYProgress, 50);
 
 	return (
 		<section

@@ -79,4 +79,12 @@ export const effects = {
 			transform: 135,
 		},
 	},
+	moon: {
+		community: {
+			top: 85,
+		},
+		footer: {
+			top: 0,
+		},
+	},
 };

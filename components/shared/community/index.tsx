@@ -1,20 +1,13 @@
 "use client";
 
 import Social from "@/components/ui/social";
-import { MotionValue, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
 
-function useParallax(value: MotionValue<number>, distance: number) {
-	return useTransform(value, [0, 1], [-distance, distance]);
-}
-
 const Community = () => {
 	const ref = useRef(null);
 	const isMobile = useMediaQuery({ query: "(max-width: 1200px)" });
-	const { scrollYProgress } = useScroll({ target: ref });
-	const y = useParallax(scrollYProgress, 100);
 
 	console.log("isMobile", isMobile);
 	return (

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const tableMocks = [
 	{
 		id: 1,
@@ -153,9 +154,9 @@ export const brands = [
 	},
 ];
 
-export const debounce = function (fn: () => unknown, t = 300) {
+export const debounce = function (fn: () => void, t = 300) {
 	let timer: string | number | NodeJS.Timeout | undefined;
-	return function (...args: any) {
+	return function (...args: []) {
 		clearTimeout(timer);
 
 		timer = setTimeout(() => {

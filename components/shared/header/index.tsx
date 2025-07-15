@@ -1,21 +1,11 @@
 "use client";
 
-import { useRef, useState } from "react";
-import {
-	AnimatePresence,
-	motion,
-	MotionValue,
-	useScroll,
-	useTransform,
-} from "motion/react";
+import { useRef } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import Button from "@/components/ui/button";
 import Achievements from "@/components/shared/achivments";
 import { achievements } from "@/lib/utils";
 import { useMediaQuery } from "react-responsive";
-
-function useParallax(value: MotionValue<number>, distance: number) {
-	return useTransform(value, [0, 1], [-distance, distance]);
-}
 
 const Header = ({
 	nextState,
@@ -26,9 +16,6 @@ const Header = ({
 }) => {
 	const ref = useRef(null);
 	const isMobile = useMediaQuery({ query: "(max-width: 1024px)" });
-
-	const { scrollYProgress } = useScroll({ target: ref });
-	const y = useParallax(scrollYProgress, 100);
 
 	return (
 		<header

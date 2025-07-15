@@ -14,19 +14,8 @@ import Community from "@/components/shared/community";
 import Footer from "@/components/shared/footer";
 import { AnimatePresence, motion } from "motion/react";
 import { debounce } from "@/lib/utils";
-// import Lenis from "lenis";
-
-// export const metadata = {
-// 	title: "Home",
-// };
-
-// const slides = [
-// 	{ id: 1, color: "#1abc9c", text: "Slide 1" },
-// 	{ id: 2, color: "#3498db", text: "Slide 2" },
-// 	{ id: 3, color: "#9b59b6", text: "Slide 3" },
-// 	{ id: 4, color: "#e67e22", text: "Slide 4" },
-// 	{ id: 5, color: "#e74c3c", text: "Slide 5" },
-// ];
+import Lenis from "lenis";
+import MoonEffect, { IMoonEffect } from "@/components/effects/moon";
 
 const slides = [
 	{ id: 1, color: "#1abc9c", name: "header" },
@@ -55,6 +44,9 @@ const Homepage = () => {
 	);
 	const [orangeEffectConfig, setOrangeEffectConfig] =
 		useState<CustomEffectProps>(effects["orange"].header_first);
+	const [moonEffectConfig, setMoonEffectConfig] = useState<IMoonEffect>(
+		effects["moon"].community
+	);
 
 	const wheel = (e: { deltaY: number }) => {
 		const delta = e.deltaY;
@@ -114,6 +106,12 @@ const Homepage = () => {
 			setEarthEffectConfig(effects["earth"].leaderboard);
 			setOrangeEffectConfig(effects["orange"].leaderboard);
 		}
+		if (screen === "community") {
+			setMoonEffectConfig(effects["moon"].community);
+		}
+		if (screen === "footer") {
+			setMoonEffectConfig(effects["moon"].footer);
+		}
 	};
 
 	useEffect(() => {
@@ -121,22 +119,19 @@ const Homepage = () => {
 		updateEffects(activeSection);
 	}, [activeSection]);
 
-	// useEffect(() => {
-	// 	const lenis = new Lenis();
-	// 	function raf(time: number) {
-	// 		lenis.raf(time);
-	// 		requestAnimationFrame(raf);
-	// 	}
+	useEffect(() => {
+		const lenis = new Lenis();
+		function raf(time: number) {
+			lenis.raf(time);
+			requestAnimationFrame(raf);
+		}
 
-	// 	requestAnimationFrame(raf);
-	// }, []);
+		requestAnimationFrame(raf);
+	}, []);
 
 	const handleNextState = () => {
 		setNextState(true);
 		setActiveSection("header_second");
-		// setEarthEffectConfig(effects["earth"].header_second);
-		// setBlueEffectConfig(effects["blue"].header_second);
-		// setOrangeEffectConfig(effects["orange"].header_second);
 	};
 
 	const checkHideEffect = (effect: string) => {
@@ -155,11 +150,14 @@ const Homepage = () => {
 				return (
 					activeSection === "community" || activeSection === "footer"
 				);
+			case "moon":
+				return (
+					activeSection !== "community" && activeSection !== "footer"
+				);
 		}
 	};
 
 	return (
-		// <div className="h-[600vh] relative container m-auto overflow-clip">
 		<div className="@9xl/wrapper:mx-[5rem] @7xl/wrapper:mx-[4rem] @5xl/wrapper:mx-[2rem] @xs/wrapper:mx-[1rem]">
 			{/* Effects */}
 			<EarthEffect
@@ -180,13 +178,8 @@ const Homepage = () => {
 				name="orange"
 				{...orangeEffectConfig}
 			/>
+			<MoonEffect hide={checkHideEffect("moon")} {...moonEffectConfig} />
 			{/* Sections */}
-			{/* <Header nextState={nextState} setNextState={setNextState} />
-			<CuttingEdge />
-			<Brands />
-			<Leaderboard />
-			<Community />
-			<Footer /> */}
 			<AnimatePresence mode="wait">
 				<motion.div
 					ref={ref}
@@ -196,19 +189,6 @@ const Homepage = () => {
 					animate={{ y: 0 }}
 					exit={{ y: activeScroll === "up" ? "-100%" : "100%" }}
 					transition={{ duration: 0.6, ease: "easeInOut" }}
-					// style={{
-					// 	position: "absolute",
-					// 	top: 0,
-					// 	left: 0,
-					// 	width: "100%",
-					// 	height: "100%",
-					// 	background: slides[slideIndex].color,
-					// 	display: "flex",
-					// 	alignItems: "center",
-					// 	justifyContent: "center",
-					// 	fontSize: "4rem",
-					// 	color: "white",
-					// }}
 				>
 					{slides[slideIndex].name === "header" && (
 						<Header
@@ -230,91 +210,5 @@ const Homepage = () => {
 		</div>
 	);
 };
-
-/* 
-
-	<AnimatePresence mode="wait">
-				<motion.div
-					ref={ref}
-					onWheel={wheel}
-					key={slides[slideIndex].id}
-					initial={{ y: "10%" }}
-					animate={{ y: 0 }}
-					exit={{ y: "-100%" }}
-					transition={{ duration: 0.6, ease: "easeInOut" }}
-					style={{
-						position: "absolute",
-						top: 0,
-						left: 0,
-						width: "100%",
-						height: "100%",
-						background: slides[slideIndex].color,
-						display: "flex",
-						alignItems: "center",
-						justifyContent: "center",
-						fontSize: "4rem",
-						color: "white",
-					}}
-				>
-					{slides[slideIndex].text}
-				</motion.div>
-			</AnimatePresence>
-
-*/
-
-// function ParallaxSection({ bg, text }) {
-// 	const ref = useRef(null);
-// 	const { scrollYProgress } = useScroll({
-// 		target: ref,
-// 		offset: ["start end", "end start"],
-// 	});
-
-// 	// Элементы двигаются по-разному
-// 	const yBackground = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-// 	const yForeground = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
-
-// 	return (
-// 		<section
-// 			ref={ref}
-// 			style={{
-// 				height: "100vh",
-// 				position: "relative",
-// 				overflow: "hidden",
-// 			}}
-// 		>
-// 			<motion.div
-// 				style={{
-// 					y: yBackground,
-// 					position: "absolute",
-// 					top: 0,
-// 					left: 0,
-// 					width: "100%",
-// 					height: "100%",
-// 					backgroundImage: `url(${bg})`,
-// 					backgroundSize: "cover",
-// 					zIndex: 1,
-// 				}}
-// 			/>
-// 			<motion.div
-// 				style={{
-// 					// y: yForeground,
-// 					position: "absolute",
-// 					top: 0,
-// 					left: 0,
-// 					width: "100%",
-// 					height: "100%",
-// 					display: "flex",
-// 					alignItems: "center",
-// 					justifyContent: "center",
-// 					zIndex: 2,
-// 					color: "white",
-// 					fontSize: "4rem",
-// 				}}
-// 			>
-// 				<h1>{text}</h1>
-// 			</motion.div>
-// 		</section>
-// 	);
-// }
 
 export default Homepage;

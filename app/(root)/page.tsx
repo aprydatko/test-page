@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import CuttingEdge from "@/components/shared/section-cutting-edge";
 import Header from "@/components/shared/header";
 import EarthEffect, { IEarthEffect } from "@/components/effects/earth";

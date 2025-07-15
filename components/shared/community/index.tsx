@@ -9,7 +9,6 @@ const Community = () => {
 	const ref = useRef(null);
 	const isMobile = useMediaQuery({ query: "(max-width: 1200px)" });
 
-	console.log("isMobile", isMobile);
 	return (
 		<section
 			ref={ref}

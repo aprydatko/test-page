@@ -12,7 +12,6 @@ const EarthEffect = ({ top, right, transform, hide = false }: IEarthEffect) => {
 		? transform
 		: "matrix(-1, -0.05, -0.05, 1, 0, 0)";
 
-	console.log("top", top);
 	return (
 		<motion.div
 			initial={{

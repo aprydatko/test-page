@@ -41,7 +41,7 @@ const CustomEffect = ({
 				width: `${width}px`,
 				height: `${height}px`,
 				background: `var(--header-effect-${name})`,
-				// filter: "blur(100px)",
+				filter: "blur(100px)",
 				opacity: hide ? "0" : opacity,
 			}}
 		></motion.div>

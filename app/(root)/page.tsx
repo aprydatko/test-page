@@ -48,7 +48,7 @@ const Homepage = () => {
 		effects["moon"].community
 	);
 
-	const wheel = (e: { deltaY: number }) => {
+	const wheel = (e: { deltaY: any }) => {
 		const delta = e.deltaY;
 
 		// Check max and min delta index
@@ -67,8 +67,8 @@ const Homepage = () => {
 			setActiveSection(slides[slideIndex + 1].name);
 			setSlideIndex(slideIndex + 1);
 		};
-		const slide_down = debounce(down, 300);
-		const slide_up = debounce(up, 300);
+		const slide_down = debounce(down, 100);
+		const slide_up = debounce(up, 100);
 
 		// Scroll up or down
 		if (delta < 0) {
@@ -115,7 +115,7 @@ const Homepage = () => {
 	};
 
 	useEffect(() => {
-		console.log("activeSection", activeSection);
+		// console.log("activeSection", activeSection);
 		updateEffects(activeSection);
 	}, [activeSection]);
 
@@ -180,7 +180,7 @@ const Homepage = () => {
 			/>
 			<MoonEffect hide={checkHideEffect("moon")} {...moonEffectConfig} />
 			{/* Sections */}
-			<AnimatePresence mode="wait">
+			<AnimatePresence>
 				<motion.div
 					ref={ref}
 					onWheel={wheel}
@@ -189,6 +189,7 @@ const Homepage = () => {
 					animate={{ y: 0 }}
 					exit={{ y: activeScroll === "up" ? "-100%" : "100%" }}
 					transition={{ duration: 0.6, ease: "easeInOut" }}
+					className="overflow-hidden"
 				>
 					{slides[slideIndex].name === "header" && (
 						<Header
